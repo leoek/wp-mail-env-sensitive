@@ -11,11 +11,11 @@ define("ENV_WP_MAIL_FROM", 'WP_MAIL_FROMNAME');
 define("ENV_WP_MAIL_FROMNAME", 'WP_MAIL_FROMNAME');
 
 function WPMailDockerEnv_from( $originalFrom ) {
-    $from = WP_MAIL_FROM ? WP_MAIL_FROM : getenv(ENV_WP_MAIL_FROM);
+    $from = defined(WP_MAIL_FROM) ? WP_MAIL_FROM : getenv(ENV_WP_MAIL_FROM);
     if ($from){
         return $from;
     }
-    $mtaHostname = MTA_HOSTNAME ? MTA_HOSTNAME : getenv(ENV_MTA_HOSTNAME);
+    $mtaHostname = defined(MTA_HOSTNAME) ? MTA_HOSTNAME : getenv(ENV_MTA_HOSTNAME);
     if ($mtaHostname){
         return "wordpress@".$mtaHostname;
     }
@@ -23,7 +23,7 @@ function WPMailDockerEnv_from( $originalFrom ) {
 }
  
 function WPMailDockerEnv_fromName( $originalFromName ) {
-    $fromName = WP_MAIL_FROMNAME ? WP_MAIL_FROMNAME : getenv(ENV_WP_MAIL_FROMNAME);
+    $fromName = defined(WP_MAIL_FROMNAME) ? WP_MAIL_FROMNAME : getenv(ENV_WP_MAIL_FROMNAME);
     if ($fromName){
         return $fromName;
     }
