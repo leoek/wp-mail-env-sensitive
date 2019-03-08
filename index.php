@@ -1,7 +1,7 @@
 <?php
 /**
 Plugin Name: wp-mail-env-sensitive
-Version: 1.0
+Version: 1.0.0
 Author: Leonard Krause, Matchwerk Solutions GmbH
 Description: This Plugin reads the env vars MTA_HOSTNAME, WP_MAIL_FROMNAME and WP_MAIL_FROMNAME and updates the wordpress mail sender accordingly.
 */
