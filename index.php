@@ -33,4 +33,11 @@ function WPMailDockerEnv_fromName( $originalFromName ) {
 add_filter( 'wp_mail_from', 'WPMailDockerEnv_from' );
 add_filter( 'wp_mail_from_name', 'WPMailDockerEnv_fromName' );
 
+/**
+ * Log mail errors if they happen!
+ */
+add_action('wp_mail_failed', function($e) {
+    error_log( print_r($e, true) );
+});
+
 ?>
