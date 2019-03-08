@@ -15,11 +15,14 @@ function WPMailDockerEnv_from( $originalFrom ) {
     if ($from){
         return $from;
     }
+    if (defined('FILTER_VALIDATE_EMAIL') && filter_var($originalFrom, FILTER_VALIDATE_EMAIL)) {
+        return $originalFrom;
+    }
     $mtaHostname = defined(ENV_MTA_HOSTNAME) ? MTA_HOSTNAME : getenv(ENV_MTA_HOSTNAME);
     if ($mtaHostname){
         return "wordpress@".$mtaHostname;
     }
-    return $originalFrom;
+    return "doNotReply@wordpress";
 }
  
 function WPMailDockerEnv_fromName( $originalFromName ) {
