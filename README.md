@@ -1,0 +1,1 @@
+# wp-mail-docker-env-sensitive
