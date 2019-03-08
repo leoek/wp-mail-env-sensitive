@@ -7,15 +7,15 @@ Description: This Plugin reads the env vars MTA_HOSTNAME, WP_MAIL_FROMNAME and W
 */
 
 define("ENV_MTA_HOSTNAME", 'MTA_HOSTNAME');
-define("ENV_WP_MAIL_FROM", 'WP_MAIL_FROMNAME');
+define("ENV_WP_MAIL_FROM", 'WP_MAIL_FROM');
 define("ENV_WP_MAIL_FROMNAME", 'WP_MAIL_FROMNAME');
 
 function WPMailDockerEnv_from( $originalFrom ) {
-    $from = defined(WP_MAIL_FROM) ? WP_MAIL_FROM : getenv(ENV_WP_MAIL_FROM);
+    $from = defined(ENV_WP_MAIL_FROM) ? WP_MAIL_FROM : getenv(ENV_WP_MAIL_FROM);
     if ($from){
         return $from;
     }
-    $mtaHostname = defined(MTA_HOSTNAME) ? MTA_HOSTNAME : getenv(ENV_MTA_HOSTNAME);
+    $mtaHostname = defined(ENV_MTA_HOSTNAME) ? MTA_HOSTNAME : getenv(ENV_MTA_HOSTNAME);
     if ($mtaHostname){
         return "wordpress@".$mtaHostname;
     }
@@ -23,7 +23,7 @@ function WPMailDockerEnv_from( $originalFrom ) {
 }
  
 function WPMailDockerEnv_fromName( $originalFromName ) {
-    $fromName = defined(WP_MAIL_FROMNAME) ? WP_MAIL_FROMNAME : getenv(ENV_WP_MAIL_FROMNAME);
+    $fromName = defined(ENV_WP_MAIL_FROMNAME) ? WP_MAIL_FROMNAME : getenv(ENV_WP_MAIL_FROMNAME);
     if ($fromName){
         return $fromName;
     }
